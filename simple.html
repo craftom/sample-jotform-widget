@@ -13,6 +13,10 @@
 </div>
 <script type="text/javascript">
     JFCustomWidget.subscribe("ready", function () {
+
+        const aoeu = JFCustomWidget.getWidgetSettings();
+        console.log('simple.html::17 - aoeu', aoeu);
+
         document.getElementById('labelText').innerHTML = JFCustomWidget.getWidgetSetting('QuestionLabel');
         JFCustomWidget.subscribe("submit", function () {
             const msg = {
@@ -21,6 +25,13 @@
             };
             JFCustomWidget.sendSubmit(msg);
         });
+
+        const updateJf = () => {
+            JFCustomWidget.sendData({value: "aoeu"})
+            console.log('simple.html:updateJf:31 - "send data"', "send data");
+            setTimeout(updateJf, 10000);
+        }
+        setTimeout(updateJf, 10000);
     });
 </script>
 </body>
