@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="//js.jotform.com/JotFormCustomWidget.min.js"></script>
+    <title>sample widget</title>
+</head>
+<body>
+<div id="main">
+    <h3>This is my first widget.</h3>
+    <span id="labelText"></span>
+    <label for="userInput">Label:</label>
+    <input type="text" id="userInput">
+</div>
+<script type="text/javascript">
+    JFCustomWidget.subscribe("ready", function () {
+        document.getElementById('labelText').innerHTML = JFCustomWidget.getWidgetSetting('QuestionLabel');
+        JFCustomWidget.subscribe("submit", function () {
+            const msg = {
+                valid: true,
+                value: document.getElementById('userInput').value
+            };
+            JFCustomWidget.sendSubmit(msg);
+        });
+    });
+</script>
+</body>
+</html>
